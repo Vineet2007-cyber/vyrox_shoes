@@ -5,9 +5,9 @@ const crypto = require('crypto');
  * Initialize Razorpay Instance
  */
 const getRazorpayInstance = () => {
-  const key_id = process.env.RAZORPAY_KEY_ID || 'rzp_test_key_id';
-  const key_secret = process.env.RAZORPAY_KEY_SECRET || 'rzp_test_key_secret';
-  
+  const key_id = process.env.RAZORPAY_KEY_ID || 'rzp_test_TKenNSfdrwZyKF';
+  const key_secret = process.env.RAZORPAY_KEY_SECRET || 'D15S777rerIr6ukA1FAjcfSk';
+
   return new Razorpay({
     key_id,
     key_secret
@@ -22,7 +22,7 @@ const getRazorpayInstance = () => {
 const createRazorpayOrder = async ({ amount, currency = 'INR', receipt, notes = {} }) => {
   try {
     const razorpay = getRazorpayInstance();
-    
+
     // Amount in paise (1 INR = 100 paise)
     const amountInPaise = Math.round(Number(amount) * 100);
 

@@ -60,7 +60,7 @@ const createPayment = async (req, res, next) => {
         razorpay_order_id: razorpayOrder.id,
         amount: razorpayOrder.amount,
         currency: razorpayOrder.currency,
-        key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_key_id',
+        key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_TKenNSfdrwZyKF',
         order_id: order.id,
         order_number: order.order_number
       }

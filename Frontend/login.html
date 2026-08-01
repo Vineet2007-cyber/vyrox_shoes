@@ -1,727 +1,676 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vyrox Shoes - Account Login</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .auth-wrapper {
-        min-height: 85vh;
-        padding-top: 130px;
-        padding-bottom: 70px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .auth-card {
-        background: rgba(255, 255, 255, 0.96);
-        border: 1px solid rgba(148, 163, 184, 0.35);
-        border-radius: 22px;
-        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
-        padding: 2.5rem;
-        width: 100%;
-        max-width: 450px;
-        backdrop-filter: blur(12px);
-      }
-      .auth-header {
-        text-align: center;
-        margin-bottom: 1.8rem;
-      }
-      .auth-welcome {
-        font-family: 'Audiowide', sans-serif;
-        font-size: 1.8rem;
-        color: #0f172a;
-        margin-bottom: 0.4rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .auth-subtitle {
-        color: #475569;
-        font-size: 0.95rem;
-        margin-bottom: 0;
-      }
-      .auth-form .form-label {
-        font-family: 'Audiowide', sans-serif;
-        font-size: 0.82rem;
-        color: #1e293b;
-        letter-spacing: 0.03em;
-        margin-bottom: 0.4rem;
-      }
-      /* Input Group with Left & Right Icons */
-      .input-icon-group {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-      .input-icon-left {
-        position: absolute;
-        left: 14px;
-        color: #64748b;
-        font-size: 1rem;
-        transition: color 0.2s ease;
-        pointer-events: none;
-        z-index: 5;
-      }
-      .toggle-password-btn {
-        position: absolute;
-        right: 12px;
-        color: #475569;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 6px;
-        border-radius: 6px;
-        z-index: 5;
-        transition: color 0.2s ease, background 0.2s ease;
-      }
-      .toggle-password-btn:hover,
-      .toggle-password-btn:focus-visible {
-        color: #0f172a;
-        background: #e2e8f0;
-        outline: 2px solid #0f172a;
-      }
-      .auth-form .form-control {
-        border-radius: 12px;
-        border: 1.5px solid #94a3b8;
-        padding: 0.85rem 1rem 0.85rem 2.6rem;
-        background: #ffffff;
-        color: #0f172a;
-        font-family: sans-serif;
-        font-size: 0.95rem;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-      .auth-form .form-control.has-toggle {
-        padding-right: 2.6rem;
-      }
-      /* Visible Focus States (Accessibility) */
-      .auth-form .form-control:focus-visible,
-      .auth-form .form-control:focus {
-        border-color: #0f172a;
-        box-shadow: 0 0 0 0.25rem rgba(15, 23, 42, 0.25);
-        outline: 2px solid #0f172a;
-        outline-offset: 1px;
-      }
-      .input-icon-group:focus-within .input-icon-left {
-        color: #0f172a;
-      }
-      /* Error Styling */
-      .auth-form .form-control.is-invalid {
-        border-color: #dc2626 !important;
-        background-image: none;
-        box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.25) !important;
-      }
-      .input-icon-group .form-control.is-invalid + .input-icon-left,
-      .input-icon-group .form-control.is-invalid ~ .input-icon-left {
-        color: #dc2626;
-      }
-      .field-error-text {
-        color: #dc2626;
-        font-size: 0.85rem;
-        font-family: sans-serif;
-        font-weight: 600;
-        margin-top: 0.35rem;
-        display: none;
-      }
-      /* Disabled Input State */
-      .auth-form .form-control:disabled {
-        background: #f1f5f9;
-        color: #64748b;
-        cursor: not-allowed;
-        opacity: 0.75;
-      }
-      /* Buttons Styling & Hover Animations */
-      .auth-btn {
-        border-radius: 12px;
-        padding: 0.85rem 1.4rem;
-        font-family: 'Audiowide', sans-serif;
-        letter-spacing: 0.05em;
-        background: #0f172a;
-        color: #ffffff;
-        border: none;
-        width: 100%;
-        margin-top: 1.2rem;
-        font-size: 1rem;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .auth-btn:hover:not(:disabled) {
-        background: #1e293b;
-        color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
-      }
-      .auth-btn:focus-visible {
-        outline: 3px solid #2563eb;
-        outline-offset: 2px;
-      }
-      .auth-btn:disabled {
-        background: #475569;
-        color: #cbd5e1;
-        cursor: not-allowed;
-        opacity: 0.8;
-        transform: none !important;
-        box-shadow: none !important;
-      }
-      .auth-links {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 1.2rem;
-        font-size: 0.88rem;
-      }
-      .auth-link {
-        color: #1d4ed8;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s ease;
-      }
-      .auth-link:hover,
-      .auth-link:focus-visible {
-        color: #09257a;
-        text-decoration: underline;
-        outline: 2px solid #1d4ed8;
-        outline-offset: 2px;
-        border-radius: 4px;
-      }
-      .alert-msg {
-        border-radius: 12px;
-        font-size: 0.92rem;
-        font-family: sans-serif;
-        font-weight: 500;
-        display: none;
-      }
-      .toggle-box {
-        text-align: center;
-        margin-top: 1.5rem;
-        padding-top: 1.2rem;
-        border-top: 1px solid #e2e8f0;
-        font-size: 0.92rem;
-        color: #475569;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 1. Header (Matches Homepage Header) -->
-    <nav class="navbar navbar-expand-lg fixed-top scrolled" aria-label="Main Navigation">
-      <div class="container-fluid px-3 px-lg-5">
-        <a class="navbar-brand me-3" href="index.html" aria-label="Vyrox Home">
-          <img src="images/logo.png" class="logo" alt="Vyrox logo" />
-        </a>
-        <img
-          src="images/logowritten.png"
-          class="logowritten"
-          alt="Vyrox website name"
-        />
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vyrox Shoes - Account Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+  <style>
+    .auth-wrapper {
+      min-height: 85vh;
+      padding-top: 130px;
+      padding-bottom: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav align-items-lg-center gap-lg-3">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#shop-section">Shop</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#about-section">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#contact-section">Contact</a></li>
-          </ul>
-        </div>
+    .auth-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 22px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 450px;
+      backdrop-filter: blur(12px);
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .auth-welcome {
+      font-family: 'Audiowide', sans-serif;
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .auth-subtitle {
+      color: #475569;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .auth-form .form-label {
+      font-family: 'Audiowide', sans-serif;
+      font-size: 0.82rem;
+      color: #1e293b;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Input Group with Left & Right Icons */
+    .input-icon-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon-left {
+      position: absolute;
+      left: 14px;
+      color: #64748b;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .toggle-password-btn {
+      position: absolute;
+      right: 12px;
+      color: #475569;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      z-index: 5;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .toggle-password-btn:hover,
+    .toggle-password-btn:focus-visible {
+      color: #0f172a;
+      background: #e2e8f0;
+      outline: 2px solid #0f172a;
+    }
+
+    .auth-form .form-control {
+      border-radius: 12px;
+      border: 1.5px solid #94a3b8;
+      padding: 0.85rem 1rem 0.85rem 2.6rem;
+      background: #ffffff;
+      color: #0f172a;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .auth-form .form-control.has-toggle {
+      padding-right: 2.6rem;
+    }
+
+    /* Visible Focus States (Accessibility) */
+    .auth-form .form-control:focus-visible,
+    .auth-form .form-control:focus {
+      border-color: #0f172a;
+      box-shadow: 0 0 0 0.25rem rgba(15, 23, 42, 0.25);
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .input-icon-group:focus-within .input-icon-left {
+      color: #0f172a;
+    }
+
+    /* Error Styling */
+    .auth-form .form-control.is-invalid {
+      border-color: #dc2626 !important;
+      background-image: none;
+      box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.25) !important;
+    }
+
+    .input-icon-group .form-control.is-invalid+.input-icon-left,
+    .input-icon-group .form-control.is-invalid~.input-icon-left {
+      color: #dc2626;
+    }
+
+    .field-error-text {
+      color: #dc2626;
+      font-size: 0.85rem;
+      font-family: sans-serif;
+      font-weight: 600;
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    /* Disabled Input State */
+    .auth-form .form-control:disabled {
+      background: #f1f5f9;
+      color: #64748b;
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
+
+    /* Buttons Styling & Hover Animations */
+    .auth-btn {
+      border-radius: 12px;
+      padding: 0.85rem 1.4rem;
+      font-family: 'Audiowide', sans-serif;
+      letter-spacing: 0.05em;
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      width: 100%;
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .auth-btn:hover:not(:disabled) {
+      background: #1e293b;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+    }
+
+    .auth-btn:focus-visible {
+      outline: 3px solid #2563eb;
+      outline-offset: 2px;
+    }
+
+    .auth-btn:disabled {
+      background: #475569;
+      color: #cbd5e1;
+      cursor: not-allowed;
+      opacity: 0.8;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .auth-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.2rem;
+      font-size: 0.88rem;
+    }
+
+    .auth-link {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .auth-link:hover,
+    .auth-link:focus-visible {
+      color: #09257a;
+      text-decoration: underline;
+      outline: 2px solid #1d4ed8;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .alert-msg {
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-family: sans-serif;
+      font-weight: 500;
+      display: none;
+    }
+
+    .toggle-box {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.92rem;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. Header (Matches Homepage Header) -->
+  <nav class="navbar navbar-expand-lg fixed-top scrolled" aria-label="Main Navigation">
+    <div class="container-fluid px-3 px-lg-5">
+      <a class="navbar-brand me-3" href="index.html" aria-label="Vyrox Home">
+        <img src="images/logo.png" class="logo" alt="Vyrox logo" />
+      </a>
+      <img src="images/logowritten.png" class="logowritten" alt="Vyrox website name" />
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#shop-section">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#about-section">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact-section">Contact</a></li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- 2. Main Login Section -->
-    <main class="container auth-wrapper">
-      <div class="auth-card">
-        <!-- Header Text -->
-        <header class="auth-header">
-          <h1 class="auth-welcome" id="form-heading">WELCOME BACK</h1>
-          <p class="auth-subtitle" id="form-subtitle">Enter your credentials to access your account</p>
-        </header>
+  <!-- 2. Main Login Section -->
+  <main class="container auth-wrapper">
+    <div class="auth-card">
+      <!-- Header Text -->
+      <header class="auth-header">
+        <h1 class="auth-welcome" id="form-heading">WELCOME BACK</h1>
+        <p class="auth-subtitle" id="form-subtitle">Enter your credentials to access your account</p>
+      </header>
 
-        <!-- Alert Notification Message (Live Feedback region for Screen Readers) -->
-        <div id="alert-box" class="alert alert-msg mb-3" role="alert" aria-live="polite"></div>
+      <!-- Alert Notification Message (Live Feedback region for Screen Readers) -->
+      <div id="alert-box" class="alert alert-msg mb-3" role="alert" aria-live="polite"></div>
 
-        <!-- LOGIN FORM -->
-        <form id="login-form" class="auth-form" novalidate onsubmit="handleLogin(event)">
-          <!-- Email Field -->
-          <div class="mb-3">
-            <label class="form-label" for="login-email">EMAIL ADDRESS</label>
-            <div class="input-icon-group">
-              <i class="fa-solid fa-envelope input-icon-left" aria-hidden="true"></i>
-              <input
-                type="email"
-                id="login-email"
-                class="form-control"
-                placeholder="name@example.com"
-                autocomplete="email"
-                aria-required="true"
-                aria-describedby="login-email-error"
-                required
-              />
-            </div>
-            <div class="field-error-text" id="login-email-error" role="alert">Please enter a valid email address</div>
+      <!-- LOGIN FORM -->
+      <form id="login-form" class="auth-form" novalidate onsubmit="handleLogin(event)">
+        <!-- Email Field -->
+        <div class="mb-3">
+          <label class="form-label" for="login-email">EMAIL ADDRESS</label>
+          <div class="input-icon-group">
+            <i class="fa-solid fa-envelope input-icon-left" aria-hidden="true"></i>
+            <input type="email" id="login-email" class="form-control" placeholder="name@example.com"
+              autocomplete="email" aria-required="true" aria-describedby="login-email-error" required />
           </div>
+          <div class="field-error-text" id="login-email-error" role="alert">Please enter a valid email address</div>
+        </div>
 
-          <!-- Password Field with Hide/Show Toggle -->
-          <div class="mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <label class="form-label mb-0" for="login-password">PASSWORD</label>
-              <!-- Forgot Password Link -->
-              <a href="#" class="auth-link small" onclick="handleForgotPassword(event)">Forgot Password?</a>
-            </div>
-            <div class="input-icon-group">
-              <i class="fa-solid fa-lock input-icon-left" aria-hidden="true"></i>
-              <input
-                type="password"
-                id="login-password"
-                class="form-control has-toggle"
-                placeholder="••••••••"
-                autocomplete="current-password"
-                aria-required="true"
-                aria-describedby="login-password-error"
-                required
-              />
-              <!-- Hide/Show Password Icon (Accessible Button) -->
-              <i
-                class="fa-solid fa-eye toggle-password-btn"
-                role="button"
-                tabindex="0"
-                aria-label="Toggle password visibility"
-                onclick="togglePasswordVisibility('login-password', this)"
-                onkeydown="if(event.key==='Enter'||event.key===' '){ event.preventDefault(); togglePasswordVisibility('login-password', this); }"
-                title="Toggle password visibility"
-              ></i>
-            </div>
-            <div class="field-error-text" id="login-password-error" role="alert">Password must be at least 6 characters</div>
+        <!-- Password Field with Hide/Show Toggle -->
+        <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0" for="login-password">PASSWORD</label>
+            <!-- Forgot Password Link -->
+            <a href="#" class="auth-link small" onclick="handleForgotPassword(event)">Forgot Password?</a>
           </div>
-
-          <!-- Login Button -->
-          <button type="submit" id="login-btn" class="btn auth-btn">LOGIN</button>
-
-          <!-- Create Account Link -->
-          <div class="toggle-box">
-            Don't have an account? 
-            <a href="#" class="auth-link fw-bold" onclick="showRegisterForm(event)">Create Account</a>
+          <div class="input-icon-group">
+            <i class="fa-solid fa-lock input-icon-left" aria-hidden="true"></i>
+            <input type="password" id="login-password" class="form-control has-toggle" placeholder="••••••••"
+              autocomplete="current-password" aria-required="true" aria-describedby="login-password-error" required />
+            <!-- Hide/Show Password Icon (Accessible Button) -->
+            <i class="fa-solid fa-eye toggle-password-btn" role="button" tabindex="0"
+              aria-label="Toggle password visibility" onclick="togglePasswordVisibility('login-password', this)"
+              onkeydown="if(event.key==='Enter'||event.key===' '){ event.preventDefault(); togglePasswordVisibility('login-password', this); }"
+              title="Toggle password visibility"></i>
           </div>
-        </form>
-
-        <!-- REGISTER FORM -->
-        <form id="register-form" class="auth-form d-none" novalidate onsubmit="handleRegister(event)">
-          <div class="mb-3">
-            <label class="form-label" for="reg-name">FULL NAME</label>
-            <div class="input-icon-group">
-              <i class="fa-solid fa-user input-icon-left" aria-hidden="true"></i>
-              <input
-                type="text"
-                id="reg-name"
-                class="form-control"
-                placeholder="John Doe"
-                autocomplete="name"
-                aria-required="true"
-                aria-describedby="reg-name-error"
-                required
-              />
-            </div>
-            <div class="field-error-text" id="reg-name-error" role="alert">Full Name is required</div>
+          <div class="field-error-text" id="login-password-error" role="alert">Password must be at least 6 characters
           </div>
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label" for="reg-email">EMAIL ADDRESS</label>
-            <div class="input-icon-group">
-              <i class="fa-solid fa-envelope input-icon-left" aria-hidden="true"></i>
-              <input
-                type="email"
-                id="reg-email"
-                class="form-control"
-                placeholder="name@example.com"
-                autocomplete="email"
-                aria-required="true"
-                aria-describedby="reg-email-error"
-                required
-              />
-            </div>
-            <div class="field-error-text" id="reg-email-error" role="alert">Please enter a valid email address</div>
+        <!-- Login Button -->
+        <button type="submit" id="login-btn" class="btn auth-btn">LOGIN</button>
+
+        <!-- Create Account Link -->
+        <div class="toggle-box">
+          Don't have an account?
+          <a href="#" class="auth-link fw-bold" onclick="showRegisterForm(event)">Create Account</a>
+        </div>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="register-form" class="auth-form d-none" novalidate onsubmit="handleRegister(event)">
+        <div class="mb-3">
+          <label class="form-label" for="reg-name">FULL NAME</label>
+          <div class="input-icon-group">
+            <i class="fa-solid fa-user input-icon-left" aria-hidden="true"></i>
+            <input type="text" id="reg-name" class="form-control" placeholder="John Doe" autocomplete="name"
+              aria-required="true" aria-describedby="reg-name-error" required />
           </div>
+          <div class="field-error-text" id="reg-name-error" role="alert">Full Name is required</div>
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label" for="reg-phone">PHONE NUMBER</label>
-            <div class="input-icon-group">
-              <i class="fa-solid fa-phone input-icon-left" aria-hidden="true"></i>
-              <input
-                type="tel"
-                id="reg-phone"
-                class="form-control"
-                placeholder="+91 9876543210"
-                autocomplete="tel"
-              />
-            </div>
+        <div class="mb-3">
+          <label class="form-label" for="reg-email">EMAIL ADDRESS</label>
+          <div class="input-icon-group">
+            <i class="fa-solid fa-envelope input-icon-left" aria-hidden="true"></i>
+            <input type="email" id="reg-email" class="form-control" placeholder="name@example.com" autocomplete="email"
+              aria-required="true" aria-describedby="reg-email-error" required />
           </div>
+          <div class="field-error-text" id="reg-email-error" role="alert">Please enter a valid email address</div>
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label" for="reg-password">PASSWORD</label>
-            <div class="input-icon-group">
-              <i class="fa-solid fa-lock input-icon-left" aria-hidden="true"></i>
-              <input
-                type="password"
-                id="reg-password"
-                class="form-control has-toggle"
-                placeholder="••••••••"
-                autocomplete="new-password"
-                aria-required="true"
-                aria-describedby="reg-password-error"
-                required
-              />
-              <i
-                class="fa-solid fa-eye toggle-password-btn"
-                role="button"
-                tabindex="0"
-                aria-label="Toggle password visibility"
-                onclick="togglePasswordVisibility('reg-password', this)"
-                onkeydown="if(event.key==='Enter'||event.key===' '){ event.preventDefault(); togglePasswordVisibility('reg-password', this); }"
-                title="Toggle password visibility"
-              ></i>
-            </div>
-            <div class="field-error-text" id="reg-password-error" role="alert">Password must be at least 6 characters</div>
+        <div class="mb-3">
+          <label class="form-label" for="reg-phone">PHONE NUMBER</label>
+          <div class="input-icon-group">
+            <i class="fa-solid fa-phone input-icon-left" aria-hidden="true"></i>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="+91 9876543210" autocomplete="tel" />
           </div>
+        </div>
 
-          <button type="submit" id="reg-btn" class="btn auth-btn">CREATE ACCOUNT</button>
-
-          <div class="toggle-box">
-            Already have an account? 
-            <a href="#" class="auth-link fw-bold" onclick="showLoginForm(event)">Login Here</a>
+        <div class="mb-3">
+          <label class="form-label" for="reg-password">PASSWORD</label>
+          <div class="input-icon-group">
+            <i class="fa-solid fa-lock input-icon-left" aria-hidden="true"></i>
+            <input type="password" id="reg-password" class="form-control has-toggle" placeholder="••••••••"
+              autocomplete="new-password" aria-required="true" aria-describedby="reg-password-error" required />
+            <i class="fa-solid fa-eye toggle-password-btn" role="button" tabindex="0"
+              aria-label="Toggle password visibility" onclick="togglePasswordVisibility('reg-password', this)"
+              onkeydown="if(event.key==='Enter'||event.key===' '){ event.preventDefault(); togglePasswordVisibility('reg-password', this); }"
+              title="Toggle password visibility"></i>
           </div>
-        </form>
+          <div class="field-error-text" id="reg-password-error" role="alert">Password must be at least 6 characters
+          </div>
+        </div>
+
+        <button type="submit" id="reg-btn" class="btn auth-btn">CREATE ACCOUNT</button>
+
+        <div class="toggle-box">
+          Already have an account?
+          <a href="#" class="auth-link fw-bold" onclick="showLoginForm(event)">Login Here</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- 3. Footer (Matches Homepage Footer Identically) -->
+  <footer class="back">
+    <div class="row last">
+      <div class="col-md-3">
+        <p>vyrox</p>
+        <p>Premium Shoes<br />Built for<br />Champions</p>
       </div>
-    </main>
-
-    <!-- 3. Footer (Matches Homepage Footer Identically) -->
-    <footer class="back">
-      <div class="row last">
-        <div class="col-md-3">
-          <p>vyrox</p>
-          <p>Premium Shoes<br />Built for<br />Champions</p>
-        </div>
-        <div class="col-md-3">
-          <p>shop</p>
-          <p>
-            Men<br />
-            Women<br />
-            Sports<br />
-            Sale
-          </p>
-        </div>
-        <div class="col-md-3">
-          <p>support</p>
-          <p>
-            Contact Us<br />
-            Shipping & Returns<br />
-            Size Guide<br />
-            FAQ
-          </p>
-        </div>
-        <div class="col-md-3">
-          <p>follow us</p>
-          <p>
-            Facebook<br />
-            Twitter<br />
-            Instagram<br />
-            LinkedIn
-          </p>
-        </div>
+      <div class="col-md-3">
+        <p>shop</p>
+        <p>
+          Men<br />
+          Women<br />
+          Sports<br />
+          Sale
+        </p>
       </div>
-    </footer>
+      <div class="col-md-3">
+        <p>support</p>
+        <p>
+          Contact Us<br />
+          Shipping & Returns<br />
+          Size Guide<br />
+          FAQ
+        </p>
+      </div>
+      <div class="col-md-3">
+        <p>follow us</p>
+        <p>
+          Facebook<br />
+          Twitter<br />
+          Instagram<br />
+          LinkedIn
+        </p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Scripts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.css"
-      crossorigin="anonymous"
-    ></script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.css"
+    crossorigin="anonymous"></script>
+  <script>
+    const API_BASE_URL = 'https://vyrox-backend.onrender.com/api/auth';
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const MIN_PASSWORD_LENGTH = 6;
 
-    <script>
-      const API_BASE_URL = 'http://localhost:5000/api/auth';
-      const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const MIN_PASSWORD_LENGTH = 6;
+    // Toggle Hide/Show Password with Keyboard & Screen Reader support
+    function togglePasswordVisibility(inputId, iconElement) {
+      const input = document.getElementById(inputId);
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      iconElement.classList.toggle('fa-eye', !isPassword);
+      iconElement.classList.toggle('fa-eye-slash', isPassword);
+      iconElement.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    }
 
-      // Toggle Hide/Show Password with Keyboard & Screen Reader support
-      function togglePasswordVisibility(inputId, iconElement) {
-        const input = document.getElementById(inputId);
-        const isPassword = input.type === 'password';
-        input.type = isPassword ? 'text' : 'password';
-        iconElement.classList.toggle('fa-eye', !isPassword);
-        iconElement.classList.toggle('fa-eye-slash', isPassword);
-        iconElement.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    function showRegisterForm(e) {
+      if (e) e.preventDefault();
+      clearErrors();
+      document.getElementById('login-form').classList.add('d-none');
+      document.getElementById('register-form').classList.remove('d-none');
+      document.getElementById('form-heading').textContent = 'JOIN VYROX';
+      document.getElementById('form-subtitle').textContent = 'Create your account to start shopping';
+      document.getElementById('alert-box').style.display = 'none';
+    }
+
+    function showLoginForm(e) {
+      if (e) e.preventDefault();
+      clearErrors();
+      document.getElementById('register-form').classList.add('d-none');
+      document.getElementById('login-form').classList.remove('d-none');
+      document.getElementById('form-heading').textContent = 'WELCOME BACK';
+      document.getElementById('form-subtitle').textContent = 'Enter your credentials to access your account';
+      document.getElementById('alert-box').style.display = 'none';
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.form-control').forEach(el => {
+        el.classList.remove('is-invalid');
+        el.removeAttribute('aria-invalid');
+      });
+      document.querySelectorAll('.field-error-text').forEach(el => el.style.display = 'none');
+    }
+
+    function showFieldError(inputId, errorId, message) {
+      const input = document.getElementById(inputId);
+      const errorText = document.getElementById(errorId);
+      if (input) {
+        input.classList.add('is-invalid');
+        input.setAttribute('aria-invalid', 'true');
+      }
+      if (errorText) {
+        errorText.textContent = message;
+        errorText.style.display = 'block';
+      }
+    }
+
+    function showAlert(message, isSuccess = false) {
+      const alertBox = document.getElementById('alert-box');
+      const iconHtml = isSuccess
+        ? '<i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-triangle-exclamation me-2" aria-hidden="true"></i>';
+
+      alertBox.className = `alert alert-msg mb-3 ${isSuccess ? 'alert-success' : 'alert-danger'}`;
+      alertBox.innerHTML = iconHtml + message;
+      alertBox.style.display = 'block';
+    }
+
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      showAlert('Password reset instructions will be sent to your registered email.', true);
+    }
+
+    function setButtonLoading(btn, isLoading, loadingText = 'LOGGING IN...') {
+      if (isLoading) {
+        btn.disabled = true;
+        btn.dataset.originalHtml = btn.innerHTML;
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-2" aria-hidden="true"></i> ${loadingText}`;
+      } else {
+        btn.disabled = false;
+        if (btn.dataset.originalHtml) {
+          btn.innerHTML = btn.dataset.originalHtml;
+        }
+      }
+    }
+
+    function setInputsDisabled(form, isDisabled) {
+      form.querySelectorAll('input').forEach(input => {
+        input.disabled = isDisabled;
+      });
+    }
+
+    // Handle Login with Validation & Detailed Error Feedback
+    async function handleLogin(e) {
+      e.preventDefault();
+      clearErrors();
+      document.getElementById('alert-box').style.display = 'none';
+
+      const emailInput = document.getElementById('login-email');
+      const passwordInput = document.getElementById('login-password');
+      const loginBtn = document.getElementById('login-btn');
+      const loginForm = document.getElementById('login-form');
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      let hasError = false;
+
+      if (!email) {
+        showFieldError('login-email', 'login-email-error', 'Email address is required.');
+        hasError = true;
+      } else if (!EMAIL_REGEX.test(email)) {
+        showFieldError('login-email', 'login-email-error', 'Please enter a valid email format (e.g. name@example.com).');
+        hasError = true;
       }
 
-      function showRegisterForm(e) {
-        if (e) e.preventDefault();
-        clearErrors();
-        document.getElementById('login-form').classList.add('d-none');
-        document.getElementById('register-form').classList.remove('d-none');
-        document.getElementById('form-heading').textContent = 'JOIN VYROX';
-        document.getElementById('form-subtitle').textContent = 'Create your account to start shopping';
-        document.getElementById('alert-box').style.display = 'none';
+      if (!password) {
+        showFieldError('login-password', 'login-password-error', 'Password is required.');
+        hasError = true;
+      } else if (password.length < MIN_PASSWORD_LENGTH) {
+        showFieldError('login-password', 'login-password-error', `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
+        hasError = true;
       }
 
-      function showLoginForm(e) {
-        if (e) e.preventDefault();
-        clearErrors();
-        document.getElementById('register-form').classList.add('d-none');
-        document.getElementById('login-form').classList.remove('d-none');
-        document.getElementById('form-heading').textContent = 'WELCOME BACK';
-        document.getElementById('form-subtitle').textContent = 'Enter your credentials to access your account';
-        document.getElementById('alert-box').style.display = 'none';
+      if (hasError) {
+        showAlert('Please fix the highlighted errors above before submitting.');
+        return;
       }
 
-      function clearErrors() {
-        document.querySelectorAll('.form-control').forEach(el => {
-          el.classList.remove('is-invalid');
-          el.removeAttribute('aria-invalid');
+      setButtonLoading(loginBtn, true, 'LOGGING IN...');
+      setInputsDisabled(loginForm, true);
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
         });
-        document.querySelectorAll('.field-error-text').forEach(el => el.style.display = 'none');
-      }
 
-      function showFieldError(inputId, errorId, message) {
-        const input = document.getElementById(inputId);
-        const errorText = document.getElementById(errorId);
-        if (input) {
-          input.classList.add('is-invalid');
-          input.setAttribute('aria-invalid', 'true');
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            showFieldError('login-email', 'login-email-error', '');
+            showFieldError('login-password', 'login-password-error', '');
+            throw new Error('Incorrect email or password. Please check your credentials.');
+          } else if (response.status >= 500) {
+            throw new Error('Server error (500). Please try again later.');
+          } else {
+            throw new Error(data.message || 'Login failed. Please try again.');
+          }
         }
-        if (errorText) {
-          errorText.textContent = message;
-          errorText.style.display = 'block';
-        }
-      }
 
-      function showAlert(message, isSuccess = false) {
-        const alertBox = document.getElementById('alert-box');
-        const iconHtml = isSuccess
-          ? '<i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i>'
-          : '<i class="fa-solid fa-triangle-exclamation me-2" aria-hidden="true"></i>';
-        
-        alertBox.className = `alert alert-msg mb-3 ${isSuccess ? 'alert-success' : 'alert-danger'}`;
-        alertBox.innerHTML = iconHtml + message;
-        alertBox.style.display = 'block';
-      }
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data));
+        showAlert(`Welcome back, ${data.name}! Redirecting to shop...`, true);
 
-      function handleForgotPassword(e) {
-        e.preventDefault();
-        showAlert('Password reset instructions will be sent to your registered email.', true);
-      }
-
-      function setButtonLoading(btn, isLoading, loadingText = 'LOGGING IN...') {
-        if (isLoading) {
-          btn.disabled = true;
-          btn.dataset.originalHtml = btn.innerHTML;
-          btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-2" aria-hidden="true"></i> ${loadingText}`;
+        setTimeout(() => {
+          window.location.href = 'index.html#shop-section';
+        }, 1200);
+      } catch (err) {
+        if (err.name === 'TypeError') {
+          showAlert('Network error. Unable to connect to backend server. Please verify your connection.');
         } else {
-          btn.disabled = false;
-          if (btn.dataset.originalHtml) {
-            btn.innerHTML = btn.dataset.originalHtml;
-          }
+          showAlert(err.message);
         }
+        setButtonLoading(loginBtn, false);
+        setInputsDisabled(loginForm, false);
+      }
+    }
+
+    // Handle Register with Validation & Feedback
+    async function handleRegister(e) {
+      e.preventDefault();
+      clearErrors();
+      document.getElementById('alert-box').style.display = 'none';
+
+      const nameInput = document.getElementById('reg-name');
+      const emailInput = document.getElementById('reg-email');
+      const phoneInput = document.getElementById('reg-phone');
+      const passwordInput = document.getElementById('reg-password');
+      const regBtn = document.getElementById('reg-btn');
+      const regForm = document.getElementById('register-form');
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const password = passwordInput.value;
+
+      let hasError = false;
+
+      if (!name) {
+        showFieldError('reg-name', 'reg-name-error', 'Full Name is required.');
+        hasError = true;
       }
 
-      function setInputsDisabled(form, isDisabled) {
-        form.querySelectorAll('input').forEach(input => {
-          input.disabled = isDisabled;
+      if (!email) {
+        showFieldError('reg-email', 'reg-email-error', 'Email address is required.');
+        hasError = true;
+      } else if (!EMAIL_REGEX.test(email)) {
+        showFieldError('reg-email', 'reg-email-error', 'Please enter a valid email format.');
+        hasError = true;
+      }
+
+      if (!password) {
+        showFieldError('reg-password', 'reg-password-error', 'Password is required.');
+        hasError = true;
+      } else if (password.length < MIN_PASSWORD_LENGTH) {
+        showFieldError('reg-password', 'reg-password-error', `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
+        hasError = true;
+      }
+
+      if (hasError) {
+        showAlert('Please fill in all required fields correctly.');
+        return;
+      }
+
+      setButtonLoading(regBtn, true, 'CREATING ACCOUNT...');
+      setInputsDisabled(regForm, true);
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, password })
         });
-      }
 
-      // Handle Login with Validation & Detailed Error Feedback
-      async function handleLogin(e) {
-        e.preventDefault();
-        clearErrors();
-        document.getElementById('alert-box').style.display = 'none';
+        const data = await response.json();
 
-        const emailInput = document.getElementById('login-email');
-        const passwordInput = document.getElementById('login-password');
-        const loginBtn = document.getElementById('login-btn');
-        const loginForm = document.getElementById('login-form');
-
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-
-        let hasError = false;
-
-        if (!email) {
-          showFieldError('login-email', 'login-email-error', 'Email address is required.');
-          hasError = true;
-        } else if (!EMAIL_REGEX.test(email)) {
-          showFieldError('login-email', 'login-email-error', 'Please enter a valid email format (e.g. name@example.com).');
-          hasError = true;
-        }
-
-        if (!password) {
-          showFieldError('login-password', 'login-password-error', 'Password is required.');
-          hasError = true;
-        } else if (password.length < MIN_PASSWORD_LENGTH) {
-          showFieldError('login-password', 'login-password-error', `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
-          hasError = true;
-        }
-
-        if (hasError) {
-          showAlert('Please fix the highlighted errors above before submitting.');
-          return;
-        }
-
-        setButtonLoading(loginBtn, true, 'LOGGING IN...');
-        setInputsDisabled(loginForm, true);
-
-        try {
-          const response = await fetch(`${API_BASE_URL}/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-          });
-
-          const data = await response.json();
-
-          if (!response.ok) {
-            if (response.status === 401) {
-              showFieldError('login-email', 'login-email-error', '');
-              showFieldError('login-password', 'login-password-error', '');
-              throw new Error('Incorrect email or password. Please check your credentials.');
-            } else if (response.status >= 500) {
-              throw new Error('Server error (500). Please try again later.');
-            } else {
-              throw new Error(data.message || 'Login failed. Please try again.');
-            }
-          }
-
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data));
-          showAlert(`Welcome back, ${data.name}! Redirecting to shop...`, true);
-
-          setTimeout(() => {
-            window.location.href = 'index.html#shop-section';
-          }, 1200);
-        } catch (err) {
-          if (err.name === 'TypeError') {
-            showAlert('Network error. Unable to connect to backend server. Please verify your connection.');
+        if (!response.ok) {
+          if (response.status === 400 && data.message.includes('exists')) {
+            showFieldError('reg-email', 'reg-email-error', 'User already exists with this email address.');
+            throw new Error('An account with this email address already exists.');
+          } else if (response.status >= 500) {
+            throw new Error('Server error (500). Please try again later.');
           } else {
-            showAlert(err.message);
+            throw new Error(data.message || 'Registration failed.');
           }
-          setButtonLoading(loginBtn, false);
-          setInputsDisabled(loginForm, false);
         }
+
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data));
+        showAlert(`Account created successfully! Welcome, ${data.name}! Redirecting to shop...`, true);
+
+        setTimeout(() => {
+          window.location.href = 'index.html#shop-section';
+        }, 1200);
+      } catch (err) {
+        if (err.name === 'TypeError') {
+          showAlert('Network error. Unable to connect to backend server.');
+        } else {
+          showAlert(err.message);
+        }
+        setButtonLoading(regBtn, false);
+        setInputsDisabled(regForm, false);
       }
+    }
+  </script>
+</body>
 
-      // Handle Register with Validation & Feedback
-      async function handleRegister(e) {
-        e.preventDefault();
-        clearErrors();
-        document.getElementById('alert-box').style.display = 'none';
-
-        const nameInput = document.getElementById('reg-name');
-        const emailInput = document.getElementById('reg-email');
-        const phoneInput = document.getElementById('reg-phone');
-        const passwordInput = document.getElementById('reg-password');
-        const regBtn = document.getElementById('reg-btn');
-        const regForm = document.getElementById('register-form');
-
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const phone = phoneInput.value.trim();
-        const password = passwordInput.value;
-
-        let hasError = false;
-
-        if (!name) {
-          showFieldError('reg-name', 'reg-name-error', 'Full Name is required.');
-          hasError = true;
-        }
-
-        if (!email) {
-          showFieldError('reg-email', 'reg-email-error', 'Email address is required.');
-          hasError = true;
-        } else if (!EMAIL_REGEX.test(email)) {
-          showFieldError('reg-email', 'reg-email-error', 'Please enter a valid email format.');
-          hasError = true;
-        }
-
-        if (!password) {
-          showFieldError('reg-password', 'reg-password-error', 'Password is required.');
-          hasError = true;
-        } else if (password.length < MIN_PASSWORD_LENGTH) {
-          showFieldError('reg-password', 'reg-password-error', `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
-          hasError = true;
-        }
-
-        if (hasError) {
-          showAlert('Please fill in all required fields correctly.');
-          return;
-        }
-
-        setButtonLoading(regBtn, true, 'CREATING ACCOUNT...');
-        setInputsDisabled(regForm, true);
-
-        try {
-          const response = await fetch(`${API_BASE_URL}/register`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, phone, password })
-          });
-
-          const data = await response.json();
-
-          if (!response.ok) {
-            if (response.status === 400 && data.message.includes('exists')) {
-              showFieldError('reg-email', 'reg-email-error', 'User already exists with this email address.');
-              throw new Error('An account with this email address already exists.');
-            } else if (response.status >= 500) {
-              throw new Error('Server error (500). Please try again later.');
-            } else {
-              throw new Error(data.message || 'Registration failed.');
-            }
-          }
-
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data));
-          showAlert(`Account created successfully! Welcome, ${data.name}! Redirecting to shop...`, true);
-
-          setTimeout(() => {
-            window.location.href = 'index.html#shop-section';
-          }, 1200);
-        } catch (err) {
-          if (err.name === 'TypeError') {
-            showAlert('Network error. Unable to connect to backend server.');
-          } else {
-            showAlert(err.message);
-          }
-          setButtonLoading(regBtn, false);
-          setInputsDisabled(regForm, false);
-        }
-      }
-    </script>
-  </body>
 </html>

@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vyrox Shoes - Unleash Your Speed</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Yuyu&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 1. NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid px-3 px-lg-5">
+        <a class="navbar-brand me-3" href="#">
+          <img src="images/logo.png" class="logo" alt="Vyrox logo" />
+        </a>
+        <img
+          src="images/logowritten.png"
+          class="logowritten"
+          alt="Vyrox text logo"
+        />
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav align-items-lg-center gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#shop-section">Shop</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about-section">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact-section">Contact</a></li>
+
+            <!-- Cart Icon & Badge -->
+            <li class="nav-item ms-lg-2">
+              <button
+                class="btn btn-outline-light border-0 position-relative px-2 text-white"
+                onclick="openCartModal()"
+                title="View Shopping Cart"
+              >
+                <i class="fa-solid fa-cart-shopping fs-5"></i>
+                <span
+                  id="cart-badge-count"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style="font-size:0.7rem;"
+                  >0</span
+                >
+              </button>
+            </li>
+
+            <!-- Auth Item (Profile / Login) -->
+            <li class="nav-item ms-lg-1" id="nav-auth-item">
+              <a class="nav-link fw-bold" href="login.html">LOGIN</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 2. HERO VIDEO CAROUSEL -->
+    <div
+      id="carouselExampleInterval"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner" style="height: 50vh !important">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <video width="100%" autoplay muted loop>
+            <source src="images/video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="carousel-item" data-bs-interval="1500">
+          <video width="100%" autoplay muted loop>
+            <source src="images/VIDEO2.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="carousel-item" data-bs-interval="1500">
+          <video width="100%" autoplay muted loop>
+            <source src="images/CAROUSEL2.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- 3. HERO CONTENT -->
+    <div class="hero">
+      <h1 class="text-center h1">UNLEASH YOUR SPEED</h1>
+      <p class="text-center p1">
+        Push beyond limits with footwear engineered for explosive performance,
+        unmatched comfort, and bold style. Every step moves you closer to
+        victory.
+      </p>
+      <a
+        href="#shop-section"
+        class="btn btn-light b1 text-decoration-none d-inline-flex align-items-center justify-content-center fw-bold"
+        >SHOP NOW</a
+      >
+    </div>
+
+    <!-- 4. FEATURES SECTION -->
+    <h1 class="text-center h3">BEST FEATURES</h1>
+    <div class="container text-center mb-5">
+      <div class="row">
+        <div class="col-md-3">
+          <i class="fa-solid fa-truck-field-un icon1"></i>
+          <h3 class="mt-3 h2">Free Shipping</h3>
+          <p class="p2">Free delivery on orders above ₹999</p>
+        </div>
+        <div class="col-md-3">
+          <i class="fa-solid fa-shield icon1"></i>
+          <h3 class="mt-3 h2">SECURE PAYMENT</h3>
+          <p class="p2">100% Safe Razorpay payments</p>
+        </div>
+        <div class="col-md-3">
+          <i class="fa-solid fa-globe icon1"></i>
+          <h3 class="mt-3 h2">EASY RETURNS</h3>
+          <p class="p2">7-day hassle-free return policy</p>
+        </div>
+        <div class="col-md-3">
+          <i class="fa-solid fa-star icon1"></i>
+          <h3 class="mt-3 h2">PREMIUM QUALITY</h3>
+          <p class="p2">High-quality materials with lasting comfort</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SHOP & COLLECTIONS (DYNAMIC INTEGRATION) -->
+    <section class="py-4" id="shop-section">
+      <div class="container">
+        <h3 class="text-center h4 mb-3">OUR COLLECTIONS</h3>
+
+        <!-- Search Bar & Category Filters -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-8">
+            <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden border">
+              <span class="input-group-text bg-white border-0 ps-3">
+                <i class="fa-solid fa-magnifying-glass text-secondary"></i>
+              </span>
+              <input
+                type="text"
+                id="search-input"
+                class="form-control border-0 py-2 shadow-none"
+                placeholder="Search shoes by name, brand, or category..."
+                oninput="handleSearchInput(event)"
+              />
+            </div>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+              <button class="btn btn-dark active cat-filter-btn rounded-pill px-3 py-1 fw-bold small" onclick="filterCategory('all', this)">All Shoes</button>
+              <button class="btn btn-outline-dark cat-filter-btn rounded-pill px-3 py-1 fw-bold small" onclick="filterCategory('running', this)">Running</button>
+              <button class="btn btn-outline-dark cat-filter-btn rounded-pill px-3 py-1 fw-bold small" onclick="filterCategory('casual', this)">Casual</button>
+              <button class="btn btn-outline-dark cat-filter-btn rounded-pill px-3 py-1 fw-bold small" onclick="filterCategory('training', this)">Training</button>
+              <button class="btn btn-outline-dark cat-filter-btn rounded-pill px-3 py-1 fw-bold small" onclick="filterCategory('basketball', this)">Basketball</button>
+              <button class="btn btn-outline-dark cat-filter-btn rounded-pill px-3 py-1 fw-bold small" onclick="filterCategory('tennis', this)">Tennis</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DYNAMIC PRODUCTS GRID CONTAINER -->
+        <div class="row" id="shop-products-grid">
+          <div class="col-12 text-center py-5">
+            <div class="spinner-border text-dark" role="status">
+              <span class="visually-hidden">Loading products...</span>
+            </div>
+            <p class="mt-2 text-muted">Loading Vyrox Shoes Collection...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ABOUT SECTION -->
+    <div class="row my-5" id="about-section">
+      <div class="col-md-6">
+        <video class="story-video" width="100%" autoplay muted loop>
+          <source src="images/CAROUSEL2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="col-md-6" style="margin-top: 5%">
+        <p class="storyli">
+          Crafted for Every Step.<br />
+          Inspired by Every Dream.
+        </p>
+        <p class="p3">
+          At Vyrox, we create footwear that blends innovation,<br />
+          comfort, and performance. Every pair is designed to<br />
+          support your journey-from daily training to achieving<br />
+          your biggest goals.
+        </p>
+        <p class="p3">
+          → Premium Materials<br />
+          → Lightweight Comfort<br />
+          → Built for Performance
+        </p>
+      </div>
+    </div>
+
+    <!-- 7. CUSTOMER TESTIMONIALS & REVIEWS -->
+    <div class="container my-5">
+      <h1 class="text-center mt-5">WHAT OUR CUSTOMERS SAY</h1>
+      <p class="text-center mt-2 fw-bold text-secondary">UNLEASH YOUR SPEED</p>
+      <p class="text-center text-muted">
+        ⭐ 4.9/5 Rating · 10K+ Happy Customers · 50K+ Pairs Sold
+      </p>
+      <div class="row mt-4">
+        <div class="col-md-4 mq1">
+          <h3>Rahul Sharma<img src="images/review1.png" class="review" /></h3>
+          <h2>⭐⭐⭐⭐⭐</h2>
+          <p style="color: gray">
+            "Vyrox shoes have transformed my running experience. The comfort and
+            support are unmatched, and I've noticed a significant improvement in
+            my performance. Highly recommended!"
+          </p>
+        </div>
+        <div class="col-md-4 mq1">
+          <h3>Priya Patel<img src="images/review2.png" class="review" /></h3>
+          <h2>⭐⭐⭐⭐⭐</h2>
+          <p style="color: gray">
+            "I've been using Vyrox shoes for months now, and they've exceeded my
+            expectations. The durability and comfort are exceptional, making
+            them perfect for my daily activities."
+          </p>
+        </div>
+        <div class="col-md-4 mq1">
+          <h3>Ankit Kumar<img src="images/review4.avif" class="review" /></h3>
+          <h2>⭐⭐⭐⭐⭐</h2>
+          <p style="color: gray">
+            "Vyrox shoes are a game-changer! The innovative design and superior
+            quality make them worth every penny. I've never felt more confident
+            in my footwear."
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. CONTACT SECTION -->
+    <section class="contact-section py-5" id="contact-section">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="contact-card contact-form-card">
+              <h3 class="contact-title">Contact Us</h3>
+              <p class="contact-subtitle">
+                Reach out to us for orders, support, or any questions.
+              </p>
+              <form class="contact-form" onsubmit="event.preventDefault(); showToast('Thank you for contacting Vyrox Support!');">
+                <div class="mb-3">
+                  <label for="c-name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="c-name" required />
+                </div>
+                <div class="mb-3">
+                  <label for="c-email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="c-email" required />
+                </div>
+                <div class="mb-3">
+                  <label for="c-message" class="form-label">Message</label>
+                  <textarea class="form-control" id="c-message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary contact-btn">Submit</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="contact-card contact-map-card">
+              <h3 class="contact-title">Visit Our Store</h3>
+              <p class="contact-address">12 Ashirwad Society, Kalol 382721</p>
+              <iframe
+                src="https://www.google.com/maps?q=12%20Ashirwad%20Society%2C%20Kalol%20382721&z=15&output=embed"
+                width="100%"
+                height="400"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FOOTER -->
+    <footer class="back">
+      <div class="row last">
+        <div class="col-md-3">
+          <p>vyrox</p>
+          <p>Premium Shoes<br />Built for<br />Champions</p>
+        </div>
+        <div class="col-md-3">
+          <p>shop</p>
+          <p>
+            Men<br />
+            Women<br />
+            Sports<br />
+            Sale
+          </p>
+        </div>
+        <div class="col-md-3">
+          <p>support</p>
+          <p>
+            Contact Us<br />
+            Shipping & Returns<br />
+            Size Guide<br />
+            FAQ
+          </p>
+        </div>
+        <div class="col-md-3">
+          <p>follow us</p>
+          <p>
+            Facebook<br />
+            Twitter<br />
+            Instagram<br />
+            LinkedIn
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================================================== -->
+    <!-- MODALS SECTION -->
+    <!-- ==================================================== -->
+
+    <!-- A. PRODUCT DETAILS & REVIEWS MODAL -->
+    <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+          <div class="modal-header border-0 pb-0">
+            <span class="badge bg-secondary text-uppercase px-3 py-1 rounded-pill" id="p-modal-category">Category</span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="row g-4">
+              <!-- Left: Image -->
+              <div class="col-md-5 text-center bg-light p-3 rounded-4">
+                <img id="p-modal-img" src="" class="img-fluid" alt="Product Image" style="max-height: 280px; object-fit: contain;" />
+              </div>
+              <!-- Right: Info & Size Picker -->
+              <div class="col-md-7">
+                <small class="text-uppercase text-secondary fw-bold" id="p-modal-brand">VYROX</small>
+                <h3 class="fw-bold text-dark mb-2" id="p-modal-title">Product Name</h3>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <span class="fs-3 fw-bold text-dark" id="p-modal-price">₹0</span>
+                  <span class="text-decoration-line-through text-muted" id="p-modal-old-price"></span>
+                </div>
+                <p class="text-secondary small mb-3" id="p-modal-description">Product description...</p>
+                
+                <!-- Size Picker -->
+                <div class="mb-3">
+                  <label class="fw-bold small text-uppercase mb-2 d-block">Select Shoe Size</label>
+                  <div id="p-modal-sizes" class="d-flex flex-wrap gap-1"></div>
+                </div>
+
+                <!-- Quantity & Add Button -->
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width: 100px;">
+                    <label class="fw-bold small text-uppercase mb-1 d-block">Quantity</label>
+                    <input type="number" id="p-modal-qty" class="form-control text-center rounded-pill" value="1" min="1" max="10" />
+                  </div>
+                  <div class="flex-grow-1 align-self-end">
+                    <button class="btn btn-dark w-100 rounded-pill py-2 fw-bold" onclick="handleAddToCartFromModal()">
+                      <i class="fa-solid fa-cart-plus me-2"></i> ADD TO CART
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <!-- Reviews Section -->
+            <div>
+              <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-comments me-2 text-warning"></i> Customer Reviews</h5>
+              
+              <!-- Review Rating Summary -->
+              <div id="p-reviews-summary"></div>
+
+              <!-- Reviews List -->
+              <div id="p-reviews-list" class="mb-4" style="max-height: 200px; overflow-y: auto;"></div>
+
+              <!-- Submit Review Form -->
+              <div class="card bg-light border-0 p-3 rounded-4">
+                <h6 class="fw-bold mb-2">Write a Review</h6>
+                <form onsubmit="handleReviewSubmit(event)">
+                  <div class="row g-2 mb-2">
+                    <div class="col-md-4">
+                      <select id="review-rating-select" class="form-select form-select-sm rounded-pill" required>
+                        <option value="5" selected>⭐⭐⭐⭐⭐ (5/5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                        <option value="3">⭐⭐⭐ (3/5)</option>
+                        <option value="2">⭐⭐ (2/5)</option>
+                        <option value="1">⭐ (1/5)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" id="review-comment-text" class="form-control form-control-sm rounded-pill" placeholder="Write your experience..." required />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-dark btn-sm rounded-pill px-4 fw-bold">Submit Review</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B. CART DRAWER / MODAL -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-right modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+          <div class="modal-header border-bottom">
+            <h5 class="modal-title fw-bold" style="font-family:'Audiowide', sans-serif;"><i class="fa-solid fa-cart-shopping me-2 text-warning"></i> YOUR CART</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4" id="cart-modal-items" style="max-height: 60vh; overflow-y: auto;">
+            <!-- Rendered cart items -->
+          </div>
+          <div class="modal-footer border-top d-block p-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-secondary">Subtotal</span>
+              <span class="fw-bold" id="cart-modal-subtotal">₹0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="fw-bold text-dark fs-5">Total</span>
+              <span class="fw-bold text-dark fs-5" id="cart-modal-total">₹0.00</span>
+            </div>
+            <button class="btn btn-dark w-100 rounded-pill py-2 fw-bold" onclick="openCheckoutModal()">
+              PROCEED TO CHECKOUT <i class="fa-solid fa-arrow-right me-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C. CHECKOUT MODAL -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+          <div class="modal-header border-bottom">
+            <h5 class="modal-title fw-bold" style="font-family:'Audiowide', sans-serif;"><i class="fa-solid fa-truck-fast me-2 text-warning"></i> CHECKOUT</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form onsubmit="handlePlaceOrderAndPay(event)">
+              <h6 class="fw-bold mb-3">Shipping Address</h6>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Street Address</label>
+                <input type="text" id="checkout-address" class="form-control rounded-3" placeholder="123 Main St, Apartment 4B" required />
+              </div>
+              <div class="row g-2 mb-3">
+                <div class="col-6">
+                  <label class="form-label small fw-bold">City</label>
+                  <input type="text" id="checkout-city" class="form-control rounded-3" placeholder="Ahmedabad" required />
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-bold">Pincode</label>
+                  <input type="text" id="checkout-pincode" class="form-control rounded-3" placeholder="382721" required />
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label small fw-bold">Phone Number</label>
+                <input type="tel" id="checkout-phone" class="form-control rounded-3" placeholder="+91 9876543210" required />
+              </div>
+
+              <!-- Order Summary Breakdown -->
+              <div class="card bg-light border-0 p-3 rounded-4 mb-4">
+                <h6 class="fw-bold mb-2">Order Summary</h6>
+                <div class="d-flex justify-content-between small text-secondary mb-1">
+                  <span>Subtotal</span>
+                  <span id="checkout-subtotal">₹0.00</span>
+                </div>
+                <div class="d-flex justify-content-between small text-secondary mb-1">
+                  <span>Shipping Fee</span>
+                  <span class="text-success fw-bold">FREE</span>
+                </div>
+                <div class="d-flex justify-content-between fw-bold text-dark pt-2 border-top">
+                  <span>Total Payable</span>
+                  <span id="checkout-total" class="fs-5">₹0.00</span>
+                </div>
+              </div>
+
+              <button type="submit" id="pay-now-btn" class="btn btn-dark w-100 rounded-pill py-3 fw-bold" style="font-family:'Audiowide', sans-serif;">
+                PROCEED TO PAYMENT
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D. MY ORDERS MODAL -->
+    <div class="modal fade" id="ordersModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+          <div class="modal-header border-bottom">
+            <h5 class="modal-title fw-bold" style="font-family:'Audiowide', sans-serif;"><i class="fa-solid fa-box me-2 text-warning"></i> MY ORDER HISTORY</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4" id="orders-modal-list" style="max-height: 70vh; overflow-y: auto;">
+            <!-- Rendered user orders -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
